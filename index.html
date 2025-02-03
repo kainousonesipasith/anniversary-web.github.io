@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anniversary web</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #ff66b2, #ff3399);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: white;
+            font-family: laosomwangfont;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px 35px;
+            border-radius: 20px;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            height: 350px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        h2 {
+            font-size: 28px;
+            color: #ff3399;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        input {
+            padding: 12px;
+            margin: 20px 0;
+            width: 90%;
+            border: 2px solid #ff3399;
+            border-radius: 10px;
+            font-size: 18px;
+            background-color: #fff;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+        input:focus {
+            border-color: #ff66b2;
+            outline: none;
+        }
+        button {
+            background: #ff66b2;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background: #ff3399;
+        }
+        #content {
+            display: none;
+            color: #333;
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 35px 45px;
+            border-radius: 20px;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
+            height: 350px;
+            text-align: center;
+        }
+        .lyrics-container {
+            position: absolute;
+            top: 50%; 
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -35%); 
+        }
+        
+        .lyrics {
+            font-size: 24px;
+            color: #ff66b2;
+            opacity: 0;
+            animation: fadeUpAndOut 6s ease-in-out forwards;
+        }
+        
+        @keyframes fadeUpAndOut {
+            0% {
+                opacity: 0;
+                transform: translateY(80px); 
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0px); 
+            }
+        }
+        
+        
+        
+        .heart {
+            position: fixed;
+            bottom: 0;
+            font-size: 24px;
+            color: red;
+            opacity: 0.7;
+            animation: floatUp 3s linear infinite;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ໃສ່ລະຫັດຜ່ານ</h2>
+        <h2> (xx/xx/xxxxx) </h2>
+        <input type="text" id="password" placeholder="DDMMYYYY">
+        <button onclick="checkPassword()">ຢືນຢັນ</button>
+    </div>
+    
+    <div id="content">
+        <h2>happy anniversary nah baby</h2>
+        <p>khit wa br jue mue khop hrb la</p>
+        <div class="lyrics-container" id="lyrics-container"></div>
+        <audio id="background-music" loop>
+            <source src="blue_yungkai.mp3" type="audio/mp3">
+        </audio>
+    </div>
+    
+    <script>
+        function checkPassword() {
+            const correctPassword = "04052024";
+            const inputPassword = document.getElementById("password").value;
+            
+            if (inputPassword === correctPassword) {
+                document.querySelector(".container").style.display = "none";
+                document.getElementById("content").style.display = "block";
+                document.getElementById("background-music").play();
+                startHearts();
+                startLyrics();
+            } else {
+                alert("ບໍ່ຈື່ຫວາາາາ!???");
+            }
+        }
+
+        function startHearts() {
+            setInterval(() => {
+                for (let i = 0; i < 3; i++) {
+                    const heart = document.createElement("div");
+                    heart.classList.add("heart");
+                    heart.innerHTML = "❤️";
+                    heart.style.left = Math.random() * 100 + "vw";
+                    heart.style.animationDuration = (Math.random() * 2 + 2) + "s";
+                    document.body.appendChild(heart);
+                    setTimeout(() => heart.remove(), 3000);
+                }
+            }, 300);
+        }
+
+        function startLyrics() {
+            const lyricsContainer = document.getElementById("lyrics-container");
+            const lyrics = [
+                
+                "ຂອບໃຈທີ່ເຂົ້າມາໃນຊີວິດນຸ ",
+                "ຂໍໃຫ້ຟ້າມີຄວາມສຸກຫລາຍໆນະເວລາເຫັນຟ້າຍິ້ມ","ນຸມີຄວາມສຸກມາກກກ",
+                "ເຖິງແມ້ຊິຜິດກັນແດ່ ບໍ່ເຂົ້າໃຈກັນແດ່", "ແຕ່ກະຫາທາງອອກນຳກັນນະ",
+                "ຢູ່ນຳກັນໄປດົນໆນະະ",
+                "ນຸນຸ ຮັກຟ້ານະະ 💖💖💖",
+            ];
+            
+            lyrics.forEach((line, index) => {
+                setTimeout(() => {
+                    const lyricLine = document.createElement("div");
+                    lyricLine.classList.add("lyrics");
+                    lyricLine.textContent = line;
+                    lyricsContainer.appendChild(lyricLine);
+                }, index * 10); 
+            });
+        }
+        
+    </script>
+</body>
+</html>
